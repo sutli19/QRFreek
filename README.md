@@ -25,7 +25,7 @@ Generate QR codes instantly from URLs, text, emails, phone numbers, or any custo
 
 ## 🚀 Live Demo
 
-**Live URL:** https://your-vercel-link.vercel.app
+**Live URL:** https://qr-freek.vercel.app/
 
 ---
 
