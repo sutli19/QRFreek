@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-ink-700/20;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body antialiased text-ink-900 dark:text-haze-100;
+    @apply bg-haze-50 dark:bg-ink-950;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  /* Visible keyboard focus everywhere — accessibility floor */
+  :focus-visible {
+    outline: 2px solid theme('colors.scan.500');
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+
+  ::selection {
+    background-color: theme('colors.signal.300');
+    color: theme('colors.ink.950');
+  }
+
+  /* Custom slim scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-signal-400/40 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-signal-400/70;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Core glassmorphism surface, light + dark aware */
+  .glass-surface {
+    @apply bg-white/60 dark:bg-ink-800/50;
+    @apply backdrop-blur-xl backdrop-saturate-150;
+    @apply border border-white/40 dark:border-white/10;
+    @apply shadow-glass-lg;
+  }
+
+  .glass-panel {
+    @apply bg-white/50 dark:bg-ink-800/40;
+    @apply backdrop-blur-lg backdrop-saturate-150;
+    @apply border border-white/30 dark:border-white/10;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-signal-500 via-signal-400 to-scan-500;
+    @apply bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3;
+    @apply font-display font-medium text-sm text-white;
+    @apply bg-gradient-to-r from-signal-600 via-signal-500 to-scan-500;
+    @apply shadow-glow-signal hover:shadow-glow-scan;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98];
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-scan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:shadow-none;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2.5;
+    @apply font-body font-medium text-sm;
+    @apply bg-white/40 dark:bg-white/5 hover:bg-white/70 dark:hover:bg-white/10;
+    @apply border border-ink-900/10 dark:border-white/10;
+    @apply text-ink-700 dark:text-haze-100;
+    @apply transition-all duration-200 ease-out hover:-translate-y-0.5;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400;
+    @apply disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+
+  .btn-icon {
+    @apply inline-flex items-center justify-center rounded-xl p-2.5;
+    @apply bg-white/40 dark:bg-white/5 hover:bg-white/70 dark:hover:bg-white/10;
+    @apply border border-ink-900/10 dark:border-white/10;
+    @apply text-ink-600 dark:text-haze-200;
+    @apply transition-all duration-200 ease-out hover:scale-105 active:scale-95;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-400;
+  }
+
+  .input-field {
+    @apply w-full rounded-2xl px-5 py-4 pr-14;
+    @apply bg-white/50 dark:bg-ink-900/40;
+    @apply border border-ink-900/10 dark:border-white/10;
+    @apply text-ink-900 dark:text-haze-50;
+    @apply font-body text-base;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-signal-400 focus:border-signal-400/60;
+  }
+
+  .input-field::placeholder {
+    color: theme('colors.ink.500 / 60%');
+  }
+
+  .dark .input-field::placeholder {
+    color: theme('colors.haze.200 / 40%');
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      theme('colors.ink.700') 0%,
+      theme('colors.ink.600') 50%,
+      theme('colors.ink.700') 100%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+}
